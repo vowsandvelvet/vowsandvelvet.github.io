@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Vows & Velvet Checkout</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+
+<style>
+/* BODY */
+body {
+  background: black;
+  color: gold;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* HEADINGS */
+h1 {
+  font-family: 'Tangerine', cursive;
+  font-size: 64px;
+  margin-top: 40px;
+}
+h2, h3 {
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+/* CART ITEMS */
+.item {
+  border: 1px solid gold;
+  padding: 15px;
+  margin: 15px auto;
+  border-radius: 12px;
+  font-size: 18px;
+  background: rgba(255, 215, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* BUTTONS */
+button {
+  background: gold;
+  color: black;
+  border: none;
+  padding: 12px 22px;
+  margin: 10px 5px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background: #d4af37;
+  transform: scale(1.05);
+}
+
+/* DELIVERY FEE SECTION */
+.delivery {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+/* FLOATING CART */
+.floating-cart {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(145deg, gold, #d4af37);
+  color: #ff8800;
+  font-family: 'Tangerine', cursive;
+  font-size: 26px;
+  padding: 12px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.35);
+  transition: all 0.3s ease;
+}
+.floating-cart:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6);
+}
+#cart-count {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background: black;
+  color: gold;
+  padding: 4px 8px;
+  border-radius: 50px;
+  margin-left: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Checkout</h1>
+
+<div id="checkout-items"></div>
+
+<div class="delivery" id="delivery-fee"></div>
+
+<h2>Total: ₦<span id="checkout-total">0</span></h2>
+
+<div class="section">
+  <h3>Bank Transfer (Nigeria)</h3>
+  <p>Bank: UBA</p>
+  <p>Account Name: Vows & Velvet</p>
+  <p>Account Number: 1234567890</p>
+</div>
+
+<div class="section">
+  <h3>Online Payment</h3>
+  <button onclick="payOnline()">Pay with Card / Demo</button>
+</div>
+
+<br>
+<a href="index.html"><button>Return Home</button></a>
+
+<!-- FLOATING CART BUTTON -->
+<a href="cart.html" class="floating-cart">
+  🛒 View Cart (<span id="cart-count">0</span>)
+</a>
+
+<script>
+// ------------------
+// CART & DELIVERY SETUP
+// ------------------
+let deliveryFee = 5000; // flat fee in ₦
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const checkoutContainer = document.getElementById("checkout-items");
+
+// DISPLAY CART ITEMS
+function updateCheckout(){
+  checkoutContainer.innerHTML = "";
+  let subtotal = 0;
+
+  cart.forEach((item, index) => {
+    let quantity = item.quantity || 1;
+    subtotal += item.price * quantity;
+
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `
+      <span>${item.name} x${quantity} - ₦${item.price * quantity}</span>
+    `;
+    checkoutContainer.appendChild(div);
+  });
+
+  // Show delivery fee
+  document.getElementById("delivery-fee").innerText = "Delivery Fee: ₦" + deliveryFee;
+
+  // Show grand total
+  document.getElementById("checkout-total").innerText = subtotal + deliveryFee;
+}
+
+// ------------------
+// DEMO PAYMENT
+// ------------------
+function payOnline(){
+  if(cart.length === 0){
+    alert("Your cart is empty!");
+    return;
+  }
+
+  let subtotal = cart.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0);
+  let grandTotal = subtotal + deliveryFee;
+
+  alert("This is a demo payment.\nTotal (including delivery): ₦" + grandTotal + "\nPayment simulated successfully! 🎉");
+
+  // Clear cart after demo
+  localStorage.removeItem("cart");
+  cart = [];
+  updateCheckout();
+  updateCartCount();
+
+  window.location.href = "index.html";
+}
+
+// ------------------
+// FLOATING CART COUNT
+// ------------------
+function updateCartCount(){
+  let count = 0;
+  cart.forEach(item => {
+    count += item.quantity || 1;
+  });
+  document.getElementById("cart-count").innerText = count;
+}
+
+// ------------------
+// INIT DISPLAY
+// ------------------
+updateCheckout();
+updateCartCount();
+</script>
+
+</body>
+</html>

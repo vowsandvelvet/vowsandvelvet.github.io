@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Velvet Vault - Products</title>
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  background:black;
+  color:gold;
+  font-family:'Tangerine',cursive;
+  text-align:center;
+  margin:0;
+}
+h1{
+  font-size:80px;
+  margin-top:40px;
+}
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  padding:50px;
+}
+.product{
+  border:1px solid gold;
+  padding:20px;
+  border-radius:12px;
+}
+.product img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+button{
+  background:gold;
+  border:none;
+  padding:10px 20px;
+  cursor:pointer;
+  font-size:18px;
+  border-radius:5px;
+}
+button:hover{
+  background:#f7c6c2;
+  color:black;
+}
+</style>
+</head>
+
+<body>
+
+<h1>The Velvet Vault</h1>
+
+<div class="products">
+  <div class="product">
+    <img src="https://source.unsplash.com/400x300/?wedding,kit" alt="Vault 1">
+    <h3>Vault 1</h3>
+    <p>₦25,000</p>
+    <button onclick="addToCart('Vault 1',25000)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://source.unsplash.com/400x300/?luxury,beauty,kit" alt="Vault 2">
+    <h3>Vault 2</h3>
+    <p>₦40,000</p>
+    <button onclick="addToCart('Vault 2',40000)">Add to Cart</button>
+  </div>
+</div>
+
+<br>
+
+<a href="cart.html">
+  <button>Go To Cart</button>
+</a>
+
+<script>
+// Simple cart system using localStorage
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart(name, price){
+  cart.push({name, price});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`${name} added to cart`);
+}
+</script>
+
+</body>
+</html>

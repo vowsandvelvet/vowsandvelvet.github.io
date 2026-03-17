@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vows & Velvet</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#0a0a0a;
+  color:#e7c6b7;
+  font-family:'Libre Baskerville',serif;
+  overflow-x:hidden;
+}
+
+/* HEADER */
+header{
+  text-align:center;
+  padding:80px 20px;
+}
+
+.logo{
+  width:140px;
+  margin-bottom:20px;
+}
+
+h1{
+  font-family:'Tangerine',cursive;
+  font-size:90px;
+  margin:0;
+}
+
+.tagline{
+  font-style:italic;
+  opacity:0.8;
+  margin-top:10px;
+}
+
+/* NAV */
+nav{
+  margin-top:30px;
+}
+
+nav a{
+  color:#e7c6b7;
+  margin:0 15px;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:2px;
+}
+
+/* SECTIONS */
+section{
+  padding:60px 10%;
+  max-width:1200px;
+  margin:auto;
+}
+
+h2{
+  font-family:'Tangerine',cursive;
+  font-size:60px;
+  text-align:center;
+  margin-bottom:40px;
+}
+
+/* KIT GRID */
+.kit-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.kit{
+  background:rgba(255,255,255,0.05);
+  border-radius:10px;
+  padding:15px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.kit:hover{
+  transform:scale(1.05);
+}
+
+.kit img{
+  width:100%;
+  border-radius:10px;
+}
+
+.kit h3{
+  font-family:'Tangerine',cursive;
+  font-size:34px;
+  margin:10px 0 0;
+}
+
+.kit button{
+  background:gold;
+  border:none;
+  padding:10px 20px;
+  margin-top:10px;
+  cursor:pointer;
+  font-size:18px;
+  border-radius:5px;
+}
+
+.kit button:hover{
+  background:#f7c6c2;
+  color:black;
+}
+
+/* TESTIMONIAL */
+.testimonial{
+  text-align:center;
+  max-width:700px;
+  margin:auto;
+  font-style:italic;
+  line-height:1.8;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:60px;
+  opacity:0.6;
+}
+
+/* ROSE PETALS */
+.floating-petals{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+.petal{
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:radial-gradient(circle,#ff6b81,#b11226);
+  border-radius:50% 0 50% 50%;
+  opacity:0.7;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0deg);}
+  100%{transform:translateY(110vh) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Vows & Velvet</h1>
+<p class="tagline">
+Sanctuary is Absolute. Provisions for your best moments.
+</p>
+<nav>
+<a href="#featured">FEATURED</a>
+<a href="#bestsellers">BESTSELLERS</a>
+<a href="#contact">INQUIRE</a>
+</nav>
+</header>
+
+<section id="featured">
+<h2>Featured Kits</h2>
+<div class="kit-grid">
+  <div class="kit">
+    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800" alt="Signature Bridal Kit">
+    <h3>Signature Bridal Kit</h3>
+    <button onclick="addToCart('Signature Bridal Kit',120000)">Add to Cart</button>
+  </div>
+  <div class="kit">
+    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=800" alt="Velvet Bliss Kit">
+    <h3>Velvet Bliss Kit</h3>
+    <button onclick="addToCart('Velvet Bliss Kit',140000)">Add to Cart</button>
+  </div>
+  <div class="kit">
+    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800" alt="Rose Gold Rescue Kit">
+    <h3>Rose Gold Rescue Kit</h3>
+    <button onclick="addToCart('Rose Gold Rescue Kit',110000)">Add to Cart</button>
+  </div>
+</div>
+</section>
+
+<section id="bestsellers">
+<h2>Bestsellers</h2>
+<div class="kit-grid">
+  <div class="kit">
+    <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=800" alt="Classic Essentials Kit">
+    <h3>Classic Essentials Kit</h3>
+    <button onclick="addToCart('Classic Essentials Kit',90000)">Add to Cart</button>
+  </div>
+  <div class="kit">
+    <img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800" alt="Timeless Luxe Kit">
+    <h3>Timeless Luxe Kit</h3>
+    <button onclick="addToCart('Timeless Luxe Kit',105000)">Add to Cart</button>
+  </div>
+  <div class="kit">
+    <img src="https://images.unsplash.com/photo-1508182311256-e3f7d17b0f17?w=800" alt="Bridal Serenity Kit">
+    <h3>Bridal Serenity Kit</h3>
+    <button onclick="addToCart('Bridal Serenity Kit',115000)">Add to Cart</button>
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Inquire</h2>
+<div class="testimonial">
+For collaborations, luxury wedding partnerships, or wholesale inquiries, please contact the Vows & Velvet concierge team.
+<br><br>
+Email: hello@vowsandvelvet.com
+</div>
+</section>
+
+<footer>
+© 2026 Vows & Velvet
+</footer>
+
+<div class="floating-petals" id="petals"></div>
+
+<script>
+// ------------------------
+// FLOATING PETALS
+// ------------------------
+const container = document.getElementById("petals");
+for(let i=0;i<25;i++){
+  const petal=document.createElement("div");
+  petal.className="petal";
+  petal.style.left=Math.random()*100+"vw";
+  petal.style.animationDuration=8+Math.random()*10+"s";
+  petal.style.animationDelay=Math.random()*5+"s";
+  container.appendChild(petal);
+}
+
+// ------------------------
+// SIMPLE CART FUNCTION
+// ------------------------
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function addToCart(name, price){
+  cart.push({name, price});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`${name} added to cart`);
+}
+</script>
+
+<!-- VIEW CART BUTTON -->
+<a href="cart.html"><button style="position:fixed;bottom:30px;right:30px;padding:15px 25px;font-size:18px;border-radius:10px;cursor:pointer;background:gold;border:none;">View Cart</button></a>
+
+</body>
+</html>
